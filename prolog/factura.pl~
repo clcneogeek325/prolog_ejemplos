@@ -1,0 +1,220 @@
+factura:-new(Ventana,picture('Ventana de practica',size(1000,450))),
+
+
+
+           new(Fondo,label(etiqueta2,image('img/1.jpg'))),
+
+           send(Ventana,display,Fondo,point(0,0)),
+
+
+
+           new(Logo1,label(etiqueta2,image('img/2.jpg'))),
+
+           send(Ventana,display,Logo1,point(15,15)),
+
+
+
+           new(Logo2,label(etiqueta2,image('img/3.png'))),
+
+           send(Ventana,display,Logo2,point(565,15)),
+
+
+
+           new(Titulo,label(etiqueta,'Factura "Tienda"',font(arial,bold,20))),
+
+           send(Ventana,display,Titulo,point(250,40)),
+
+
+
+           new(Nombre,label(etiqueta,'Nombre',font(arial,bold,14))),
+
+           send(Ventana,display,Nombre,point(145,130)),
+
+
+
+           new(Producto,label(etiqueta,'Producto',font(arial,bold,14))),
+
+           send(Ventana,display,Producto,point(350,130)),
+
+
+
+           new(Cantidad,label(etiqueta,'Cantidad',font(arial,bold,14))),
+
+           send(Ventana,display,Cantidad,point(450,130)),
+
+
+
+           new(Precio,label(etiqueta,'Precio Unitario',font(arial,bold,14))),
+
+           send(Ventana,display,Precio,point(650,130)),
+
+
+
+           new(Total,label(etiqueta,'Total',font(arial,bold,14))),
+
+           send(Ventana,display,Total,point(850,130)),
+
+
+
+           new(Producto1,text_item('Producto 1')),
+
+           send(Ventana,display,Producto1,point(20,160)),
+
+
+
+           new(Nombre1,text_item('')),
+
+           send(Ventana,display,Nombre1,point(275,160)),
+
+
+
+           new(Nombre2,text_item('')),
+
+           send(Ventana,display,Nombre2,point(465,160)),
+
+
+
+           new(Nombre3,text_item('')),
+
+           send(Ventana,display,Nombre3,point(655,160)),
+
+
+
+           new(Nombre4,text_item('')),
+
+           send(Ventana,display,Nombre4,point(845,160)),
+
+
+
+           new(Producto2,text_item('Producto 2')),
+
+           send(Ventana,display,Producto2,point(20,200)),
+
+
+
+           new(Nombre5,text_item('')),
+
+           send(Ventana,display,Nombre5,point(275,200)),
+
+
+
+           new(Nombre6,text_item('')),
+
+           send(Ventana,display,Nombre6,point(465,200)),
+
+
+
+           new(Nombre7,text_item('')),
+
+           send(Ventana,display,Nombre7,point(655,200)),
+
+
+
+           new(Nombre8,text_item('')),
+
+           send(Ventana,display,Nombre8,point(845,200)),
+
+
+
+           new(Producto3,text_item('Producto 3')),
+
+           send(Ventana,display,Producto3,point(20,240)),
+
+
+
+           new(Nombre9,text_item('')),
+
+           send(Ventana,display,Nombre9,point(275,240)),
+
+
+
+           new(Nombre10,text_item('')),
+
+           send(Ventana,display,Nombre10,point(465,240)),
+
+
+
+           new(Nombre11,text_item('')),
+
+           send(Ventana,display,Nombre11,point(655,240)),
+
+
+
+           new(Nombre12,text_item('')),
+
+           send(Ventana,display,Nombre12,point(845,240)),
+
+
+
+           new(Subtotal,text_item('Subtotal')),
+
+           send(Ventana,display,Subtotal,point(791,280)),
+
+
+
+           new(Iva,text_item('Iva 16%')),
+
+           send(Ventana,display,Iva,point(797,320)),
+
+
+
+           new(Pagar,text_item('Total a Pagar')),
+
+           send(Ventana,display,Pagar,point(759,360)),
+
+
+
+           new(BtnEnviar,button('Calcular',message(@prolog,datos,
+
+           Nombre2,Nombre3,Nombre4,Nombre6,Nombre7,Nombre8,Nombre10,
+
+           Nombre11,Nombre12,Subtotal,Iva,Pagar))),
+
+           send(Ventana,display,BtnEnviar,point(120,330)),
+
+
+
+           new(BtnCerrar,button('cerrar',message(@prolog,cerrar,Ventana))),
+
+           send(Ventana,display,BtnCerrar,point(300,330)),
+
+
+
+           send(Ventana,open,point(10,100)).
+
+
+
+ cerrar(Ventana):-send(Ventana,destroy).
+
+
+
+ datos(Nombre2,Nombre3,Nombre4,Nombre6,Nombre7,Nombre8,Nombre10,Nombre11,Nombre12,Subtotal,Iva,Pagar):-
+
+   get(Nombre2,value,N2),get(Nombre3,value,N3),
+
+   get(Nombre6,value,N6),get(Nombre7,value,N7),
+
+   get(Nombre10,value,N10),get(Nombre11,value,N11),
+
+   get(Nombre4,value,N4),get(Nombre8,value,N8),get(Nombre12,value,N12),
+
+   get(Subtotal,value,Sb),get(Iva,value,Iv),
+
+   send(Nombre12,value,N10 * N11),
+
+   send(Nombre8,value,N6 * N7),
+
+   send(Nombre4,value,N2 * N3),
+
+   send(Subtotal,value,N4 + N8 + N12),
+
+   send(Iva,value,Sb * 16 /100),
+
+   send(Pagar,value,Sb + Iv).
+
+
+
+
+
+
+
